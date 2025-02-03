@@ -1,0 +1,24 @@
+# This is a PipeLine Configuration File..
+# Reference: https://www.youtube.com/watch?v=z7nLsJvEyMY
+# Verified Profile before pipeline commit
+
+stages:
+  - build
+  - test
+
+create_file:
+  image: alpine
+  stage: build
+  script:
+    - echo "Build Initialized..."
+    - mkdir build
+    - touch build/test.txt
+  artifacts:
+    paths:
+     - build/
+
+test_file:
+  image: alpine
+  stage: test
+  script:
+    - test -f build/test.txt
